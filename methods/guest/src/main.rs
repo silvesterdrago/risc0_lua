@@ -23,17 +23,21 @@ fn main() {
     let mut vm = Lua::new();
     vm.load_standard_library();
     match vm.run(source_in) {
-        Ok(_value) => {
-            // let result = value.;
-            env::commit(&input);
+        Ok(value) => {
+            match value {
+                silt_lua::prelude::Value::Integer(n) => {
+                    let result = n as u32;
+                    env::commit(&result);
+                }
+                _ => {
+                    env::commit(&input);
+                }
+            }
         }
         Err(_e) => {
-            env::commit(&input);
+            env::commit(&0);
         }
     }
 
     // TODO: do something with the input
-
-    // write public output to the journal
-    env::commit(&input);
 }

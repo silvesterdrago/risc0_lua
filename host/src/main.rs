@@ -24,7 +24,7 @@ fn main() {
     // ExecutorEnvBuilder::build().
 
     // For example:
-    let input: u32 = 15 * u32::pow(2, 27) + 1;
+    let input: u32 = 42;//15 * u32::pow(2, 27) + 1;
     let env = ExecutorEnv::builder()
         .write(&input)
         .unwrap()
@@ -47,6 +47,8 @@ fn main() {
 
     // For example:
     let _output: u32 = receipt.journal.decode().unwrap();
+
+    println!("output: {}", _output);
 
     // The receipt was verified at the end of proving, but the below code is an
     // example of how someone else could verify this receipt.
